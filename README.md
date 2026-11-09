@@ -1,6 +1,6 @@
 # Bya-Hero: A Live Bus Board at the Batangas Grand Terminal
 ## Project Description
-Biyahe Board is a Java-based web application that gives commuters a live view of the buses currently at the Batangas Grand Terminal. A dispatcher checks in each bus when it arrives by entering its plate number, operator, and destination. The Java back-end saves each check-in as a row in a CSV file, which serves as the database. The public web page, built with HTML and CSS, shows every bus in the terminal grouped by destination (for example PITX, Buendia, and Cubao), along with its fare and status, and refreshes every minute. Each bus links to a route page that lists its stops.
+Bya-Hero is a Java-based web application that gives commuters a live view of the buses currently at the Batangas Grand Terminal. A dispatcher checks in each bus when it arrives by entering its plate number, operator, and destination. The Java back-end saves each check-in as a row in a CSV file, which serves as the database. The public web page, built with HTML and CSS, shows every bus in the terminal grouped by destination (for example PITX, Buendia, and Cubao), along with its fare and status, and refreshes every minute. Each bus links to a route page that lists its stops.
 ## Problems being addressed
 - Bus fares are not posted in one place, so passengers can be unsure what they should pay before boarding.
 - There is no way to tell which buses in the terminal are still loading or about to leave. Routes differ between buses, and passengers cannot compare stops, drop-off points, or the roads used.
