@@ -39,7 +39,7 @@ Display all buses at the terminal grouped by destination, with their fare and cu
 | Member | Roles |
 | --- | --- |
 | Azik Carandang | Project Leader |
-| Aliah Mae Mitra | System/Design Lead |
+| Alliah Mae Mitra | System/Design Lead |
 | Tristan Lei Quinto | Lead Programmer |
 ## OOP Concepts Demonstrated
 tba
