@@ -6,7 +6,7 @@ Bya-Hero is a Java-based web application that gives commuters a live view of the
 - There is no way to tell which buses in the terminal are still loading or about to leave. Routes differ between buses, and passengers cannot compare stops, drop-off points, or the roads used.
 - Waiting times are uncertain, which is hardest on first-time commuters, students, and senior citizens.
 ## Project Objectives
-General Objective To develop a Java-based application that gives commuters and terminal staff a live, organized view of buses, fares, statuses, and routes at the Batangas Grand Terminal.
+General Objective: To develop a Java-based application that gives commuters and terminal staff a live, organized view of buses, fares, statuses, and routes at the Batangas Grand Terminal.
 ### Specific Objectives
 - Allow dispatchers to register (check in) each arriving bus with its plate number, operator, and destination.
 Display all buses at the terminal grouped by destination, with their fare and current status.
