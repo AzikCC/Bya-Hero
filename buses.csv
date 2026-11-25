@@ -1,0 +1,5 @@
+plate,busType,operator,destination,status,bay,checkInTime,estDeparture
+ABC-123,PROVINCIAL,Victory Liner,Baguio,LOADING,1,2026-11-14 06:15:00,07:00
+DEF-4567,ORDINARY,JAC Liner,Manila,ARRIVED,2,2026-11-14 06:30:00,07:30
+GHI-789,PROVINCIAL,Five Star,Batangas,ARRIVED,3,2026-11-14 06:45:00,08:00
+JKL-321,ORDINARY,Saulog Transit,Manila,DEPARTED,2,2026-11-14 05:00:00,05:45
