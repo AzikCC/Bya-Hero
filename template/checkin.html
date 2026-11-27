@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Check in a bus - ByaHero</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="fascia">
+  <div class="fascia-inner">
+    <p class="sign">ByaHero Bus Terminal</p>
+    <nav aria-label="Main">
+      <a href="/board">Board</a>
+      <a href="/checkin" aria-current="page">Check-in</a>
+      <a href="/route">Routes</a>
+      <a href="/admin">Admin</a>    </nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 class="page-title">Check in a bus</h1>
+<p class="notice error" role="alert">{{errorMessage}}</p>
+<p class="notice ok" role="status">{{successMessage}}</p>
+<form class="panel" method="post" action="/checkin">
+  <div class="grid">
+    <label class="field">Plate number <input type="text" name="plate" value="{{plate}}" placeholder="ABC-1234" autocomplete="off"></label>
+    <label class="field">Bus type
+      <select name="busType">
+        {{busTypeOptions}}
+      </select>
+    </label>
+    <label class="field">Operator <select name="operator">{{operatorOptions}}</select></label>
+    <label class="field">Destination <select name="destination">{{destinationOptions}}</select></label>
+    <label class="field">Bay <input type="text" name="bay" value="{{bay}}"></label>
+    <label class="field">Estimated departure <input type="text" name="estDeparture" value="{{estDeparture}}" placeholder="14:30"></label>
+  </div>
+  <button type="submit">Check in bus</button>
+</form>
+</main>
+</body>
+</html>

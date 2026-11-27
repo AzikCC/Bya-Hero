@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Admin login - ByaHero</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="fascia">
+  <div class="fascia-inner">
+    <p class="sign">ByaHero Bus Terminal</p>
+    <nav aria-label="Main">
+      <a href="/board">Board</a>
+      <a href="/checkin">Check-in</a>
+      <a href="/route">Routes</a>
+      <a href="/admin" aria-current="page">Admin</a>    </nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 class="page-title">Admin login</h1>
+<p class="notice error" role="alert">{{errorMessage}}</p>
+<form class="panel login-panel" method="post" action="/login">
+  <div class="grid">
+    <label class="field">Username <input type="text" name="username" value="{{username}}" autocomplete="username" autofocus></label>
+    <label class="field">Password <input type="password" name="password" autocomplete="current-password"></label>
+  </div>
+  <div class="admin-actions">
+    <button type="submit">Log in</button>
+  </div>
+</form>
+</main>
+</body>
+</html>

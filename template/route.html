@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Route stops - ByaHero</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="fascia">
+  <div class="fascia-inner">
+    <p class="sign">ByaHero Bus Terminal</p>
+    <nav aria-label="Main">
+      <a href="/board">Board</a>
+      <a href="/checkin">Check-in</a>
+      <a href="/route" aria-current="page">Routes</a>
+      <a href="/admin">Admin</a>    </nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 class="page-title">Route stops</h1>
+<p class="notice error" role="alert">{{errorMessage}}</p>
+<form class="panel inline-form" method="get" action="/route">
+  <label class="field">Destination <select name="destination">{{destinationOptions}}</select></label>
+  <button type="submit">Show stops</button>
+</form>
+<section class="panel route-panel">
+  <h2>{{destination}}</h2>
+  <div class="table-scroll route-table">
+    <table class="data">
+      <thead><tr><th>Order</th><th>Stop</th><th>Road</th></tr></thead>
+      <tbody>{{routeRows}}</tbody>
+    </table>
+  </div>
+  {{mapEmbed}}
+</section>
+</main>
+</body>
+</html>
