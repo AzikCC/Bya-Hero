@@ -1,0 +1,125 @@
+/* ByaHero stylesheet. Colors come from the "Holst" blue palette. Edit freely: no Java changes needed. */
+:root {
+  --navy: #223A5E;
+  --deep: #355982;
+  --mid: #4D79A8;
+  --sky: #6E9ECC;
+  --soft: #9FC0E3;
+  --mist: #D0E1F2;
+  --snow: #F3F8FD;
+  --white: #FFFFFF;
+  /* only used for meaning: errors, success, late buses */
+  --bad: #B3261E;
+  --ok: #2E7D4F;
+  --late: #FF9C8A;
+  --font: "DM Sans", system-ui, "Segoe UI", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: light; }
+body { margin: 0; background: var(--snow); color: var(--navy); font: 400 1rem/1.5 var(--font); }
+a { color: var(--deep); }
+:focus-visible { outline: 3px solid var(--mid); outline-offset: 2px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ---------- header ---------- */
+.fascia { background: var(--navy); color: var(--snow); }
+.fascia-inner { max-width: 1240px; margin: 0 auto; padding: 0.9rem 1.25rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 2rem; }
+.sign { margin: 0; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em; }
+.fascia nav { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.fascia nav a { padding: 0.4rem 1rem; color: var(--mist); text-decoration: none; font-weight: 500; border-radius: 999px; transition: background-color 0.15s; }
+.fascia nav a:hover { background: rgba(243, 248, 253, 0.12); }
+.fascia nav a[aria-current="page"] { background: var(--deep); color: var(--white); }
+.fascia :focus-visible { outline-color: var(--mist); }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 1.75rem 1.25rem 3rem; }
+.page-title { margin: 0; font-size: 1.875rem; line-height: 1.2; font-weight: 700; }
+
+/* ---------- messages ---------- */
+.notice { max-width: 760px; margin: 1rem 0 0; padding: 0.7rem 1rem; background: var(--white); border: 1px solid var(--mist); border-left: 6px solid var(--bad); border-radius: 12px; }
+.notice.ok { border-left-color: var(--ok); }
+.notice:empty { display: none; }
+.empty { max-width: 560px; margin: 1.5rem 0; padding: 1.25rem 1.5rem; background: var(--white); border: 1px solid var(--mist); border-radius: 20px; }
+
+/* ---------- board: one panel per destination, one bay per bus ---------- */
+.board { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1.5rem; margin-top: 1.5rem; }
+.lane { max-width: 100%; padding: 1.25rem 1rem 0.25rem; background: var(--white); border: 1px solid var(--mist); border-radius: 20px; box-shadow: 0 1px 3px rgba(34, 58, 94, 0.08); }
+.lane-sign { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; margin: 0 0.5rem 1.25rem; }
+.lane-sign h2 { margin: 0; font-size: 1.375rem; line-height: 1.2; }
+.lane-sign p { margin: 0; padding: 0.1rem 0.7rem; background: var(--mist); border-radius: 999px; font-size: 0.875rem; font-weight: 500; }
+.lane-sign a { font-size: 0.9375rem; font-weight: 600; }
+
+.bays { display: flex; flex-wrap: wrap; }
+.bay { flex: 0 0 224px; max-width: 100%; padding: 0 0.75rem 1.25rem; text-align: center; }
+.bay + .bay { border-left: 2px dashed var(--soft); }
+.bay-no { display: inline-block; margin: 0 0 1rem; padding: 0.2rem 0.9rem; background: var(--deep); color: var(--snow); border-radius: 999px; font-size: 0.875rem; font-weight: 600; }
+
+/* bus type is shown by shade: light = Ordinary, dark = Provincial (the sign also says the type in words) */
+.type-ordinary { --body: var(--soft); --roof: var(--snow); }
+.type-provincial { --body: var(--navy); --roof: var(--mist); }
+
+/* a bus seen from above, nose pointing down */
+.bus { position: relative; width: 84px; height: 216px; margin: 0 auto; background: var(--body); border-radius: 16px 16px 10px 10px; box-shadow: 0 8px 14px rgba(34, 58, 94, 0.25); }
+.roof { position: absolute; inset: 8px 8px 58px; display: flex; align-items: center; justify-content: center; background: var(--roof); border-radius: 9px; }
+.roof::before, .roof::after { content: ""; position: absolute; left: 50%; width: 58%; height: 12%; transform: translateX(-50%); background: rgba(34, 58, 94, 0.14); border-radius: 3px; }
+.roof::before { top: 6%; }
+.roof::after { bottom: 6%; }
+.operator { writing-mode: vertical-rl; max-height: 92px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.8125rem; font-weight: 600; color: var(--navy); }
+.windshield { position: absolute; left: 6px; right: 6px; bottom: 24px; height: 30px; background: linear-gradient(var(--snow), var(--mist)); border-radius: 4px 4px 9px 9px; }
+.bus::after { content: ""; position: absolute; bottom: 7px; left: 4px; width: 9px; height: 6px; background: var(--snow); border-radius: 2px; box-shadow: 67px 0 0 var(--snow); }
+.plate { position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); padding: 0 6px; background: var(--snow); color: var(--navy); border-radius: 3px; font-size: 0.6875rem; font-weight: 700; line-height: 1.25rem; letter-spacing: 0.03em; white-space: nowrap; }
+
+/* countdown sign in front of each bus */
+.timer-sign { width: 184px; margin: 1rem auto 0; padding: 0.8rem 0.75rem; background: var(--navy); color: var(--mist); border-radius: 16px; }
+.count { margin: 0; color: var(--snow); font-size: 1.875rem; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.overdue .count { color: var(--late); }
+.caption { margin: 0.1rem 0 0.6rem; color: var(--soft); font-size: 0.875rem; }
+.status { display: inline-block; padding: 0.1rem 0.75rem; border-radius: 999px; font-size: 0.875rem; font-weight: 600; }
+.status-arrived .status { color: var(--mist); box-shadow: inset 0 0 0 1.5px var(--soft); }
+.status-loading .status { background: var(--soft); color: var(--navy); }
+.fare { margin: 0.4rem 0 0; font-size: 0.875rem; }
+.timer-sign button { width: 100%; margin-top: 0.75rem; padding: 0.5rem 0.75rem; background: var(--soft); color: var(--navy); font-size: 0.9375rem; }
+.timer-sign button:hover { background: var(--mist); filter: none; }
+.timer-sign :focus-visible { outline-color: var(--mist); }
+
+/* ---------- panels, forms, tables (check-in, route, admin) ---------- */
+.panel { max-width: 760px; margin-top: 1.5rem; padding: 1.5rem; background: var(--white); border: 1px solid var(--mist); border-radius: 20px; box-shadow: 0 1px 3px rgba(34, 58, 94, 0.08); }
+.panel.wide { max-width: none; }
+.panel h2 { margin: 0 0 1rem; font-size: 1.375rem; line-height: 1.2; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+.field { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9375rem; font-weight: 500; }
+.inline-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem; }
+input, select { min-width: 0; padding: 0.6rem 0.8rem; background: var(--white); color: var(--navy); font: inherit; border: 1.5px solid var(--soft); border-radius: 12px; }
+input::placeholder { color: #6a7f9c; }
+
+button, .link-button { display: inline-block; padding: 0.6rem 1.25rem; background: var(--deep); color: var(--snow); font: 600 1rem/1.3 var(--font); text-decoration: none; border: 0; border-radius: 999px; cursor: pointer; transition: background-color 0.15s; }
+button:hover, .link-button:hover { background: var(--navy); }
+.admin-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.admin-actions button[value="update"] { background: var(--mist); color: var(--navy); }
+.admin-actions button[value="update"]:hover { background: var(--soft); }
+.admin-actions button[value="delete"] { background: transparent; color: var(--bad); box-shadow: inset 0 0 0 1.5px var(--bad); }
+.admin-actions button[value="delete"]:hover { background: #fbeceb; }
+.admin-note { margin: 0 0 1rem; }
+
+.table-scroll { margin-bottom: 1.25rem; overflow-x: auto; border: 1px solid var(--mist); border-radius: 12px; }
+table.data { width: 100%; border-collapse: collapse; }
+table.data th, table.data td { padding: 0.6rem 0.85rem; text-align: left; border-bottom: 1px solid var(--mist); }
+table.data tbody tr:last-child td { border-bottom: 0; }
+table.data th { background: var(--navy); color: var(--snow); font-size: 0.9375rem; font-weight: 600; }
+
+.route-table:has(tbody:empty) { display: none; }
+.route-panel:has(h2:empty) { display: none; }
+.map-embed { display: block; width: 100%; height: 22rem; margin-top: 1.25rem; border: 1px solid var(--mist); border-radius: 16px; }
+
+@media (max-width: 520px) {
+  .lane { width: 100%; }
+  .bay { flex-basis: 100%; }
+  .bay + .bay { border-left: 0; border-top: 2px dashed var(--soft); padding-top: 1.25rem; }
+}
+
+/* ---------- login / logout ---------- */
+.title-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+button.logout { padding: 0.4rem 1rem; background: transparent; color: var(--navy); box-shadow: inset 0 0 0 1.5px var(--navy); }
+button.logout:hover { background: var(--mist); }
+.login-panel { max-width: 420px; }
