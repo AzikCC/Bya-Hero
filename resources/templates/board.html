@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ByaHero Bus Terminal</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/board.js" defer></script>
+</head>
+<body>
+<header class="fascia">
+  <div class="fascia-inner">
+    <p class="sign">ByaHero Bus Terminal</p>
+    <nav aria-label="Main">
+      <a href="/board" aria-current="page">Board</a>
+      <a href="/checkin">Check-in</a>
+      <a href="/route">Routes</a>
+      <a href="/admin">Admin</a>    </nav>
+  </div>
+</header>
+<main class="wrap">
+<h1 class="visually-hidden">Terminal board</h1>
+<p class="notice error" role="alert">{{errorMessage}}</p>
+{{boardContent}}
+<section class="panel">
+  <h2>Update a bus by plate number</h2>
+  <form class="inline-form" method="post" action="/status">
+    <label class="field">Plate number <input type="text" name="plate" autocomplete="off"></label>
+    <label class="field">New status
+      <select name="nextStatus">
+        <option value="LOADING">Loading</option>
+        <option value="DEPARTED">Departed</option>
+      </select>
+    </label>
+    <button type="submit">Update status</button>
+  </form>
+</section>
+</main>
+</body>
+</html>

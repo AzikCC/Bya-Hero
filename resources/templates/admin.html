@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Admin - ByaHero</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="fascia">
+  <div class="fascia-inner">
+    <p class="sign">ByaHero Bus Terminal</p>
+    <nav aria-label="Main">
+      <a href="/board">Board</a>
+      <a href="/checkin">Check-in</a>
+      <a href="/route">Routes</a>
+      <a href="/admin" aria-current="page">Admin</a>    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="title-row">
+  <h1 class="page-title">Admin</h1>
+  <form method="post" action="/logout"><button type="submit" class="logout">Log out</button></form>
+</div>
+<p class="notice error" role="alert">{{errorMessage}}</p>
+<p class="notice ok" role="status">{{successMessage}}</p>
+
+<section class="panel wide">
+  <h2>Fares</h2>
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Destination</th><th>Base fare</th></tr></thead>
+      <tbody>{{fareRows}}</tbody>
+    </table>
+  </div>
+  <form method="post" action="/admin">
+    <input type="hidden" name="entity" value="fare">
+    <div class="grid">
+      <label class="field">Destination <input type="text" name="destination"></label>
+      <label class="field">Base fare <input type="text" name="baseFare"></label>
+    </div>
+    <div class="admin-actions">
+      <button type="submit" name="action" value="add">Add fare</button>
+      <button type="submit" name="action" value="update">Update fare</button>
+      <button type="submit" name="action" value="delete">Delete fare</button>
+    </div>
+  </form>
+</section>
+
+<section class="panel wide">
+  <h2>Route stops</h2>
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Destination</th><th>Order</th><th>Stop</th><th>Road</th></tr></thead>
+      <tbody>{{routeRows}}</tbody>
+    </table>
+  </div>
+  <form method="post" action="/admin">
+    <input type="hidden" name="entity" value="route">
+    <div class="grid">
+      <label class="field">Destination <input type="text" name="destination"></label>
+      <label class="field">Stop order <input type="text" name="stopOrder"></label>
+      <label class="field">Stop name <input type="text" name="stopName"></label>
+      <label class="field">Road <input type="text" name="road"></label>
+    </div>
+    <div class="admin-actions">
+      <button type="submit" name="action" value="add">Add stop</button>
+      <button type="submit" name="action" value="update">Update stop</button>
+      <button type="submit" name="action" value="delete">Delete stop</button>
+    </div>
+  </form>
+</section>
+
+<section class="panel wide">
+  <h2>Operators</h2>
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Name</th><th>Contact number</th></tr></thead>
+      <tbody>{{operatorRows}}</tbody>
+    </table>
+  </div>
+  <form method="post" action="/admin">
+    <input type="hidden" name="entity" value="operator">
+    <div class="grid">
+      <label class="field">Name <input type="text" name="name"></label>
+      <label class="field">Contact number (optional) <input type="text" name="contactNumber"></label>
+    </div>
+    <div class="admin-actions">
+      <button type="submit" name="action" value="add">Add operator</button>
+      <button type="submit" name="action" value="update">Update operator</button>
+      <button type="submit" name="action" value="delete">Delete operator</button>
+    </div>
+  </form>
+</section>
+
+<section class="panel wide">
+  <h2>Buses, including departed history</h2>
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Plate</th><th>Type</th><th>Operator</th><th>Destination</th><th>Status</th><th>Bay</th><th>Est. departure</th></tr></thead>
+      <tbody>{{busRows}}</tbody>
+    </table>
+  </div>
+  <p class="admin-note">When updating a bus, leave a field blank to keep its current value.</p>
+  <form method="post" action="/admin">
+    <input type="hidden" name="entity" value="bus">
+    <div class="grid">
+      <label class="field">Plate number <input type="text" name="plate"></label>
+      <label class="field">Bus type
+        <select name="busType">
+          {{busTypeOptions}}
+        </select>
+      </label>
+      <label class="field">Operator <select name="operator">{{operatorOptions}}</select></label>
+      <label class="field">Destination <input type="text" name="destination"></label>
+      <label class="field">Bay <input type="text" name="bay"></label>
+      <label class="field">Estimated departure <input type="text" name="estDeparture"></label>
+    </div>
+    <div class="admin-actions">
+      <button type="submit" name="action" value="add">Add bus</button>
+      <button type="submit" name="action" value="update">Update bus</button>
+      <button type="submit" name="action" value="delete">Delete bus</button>
+    </div>
+  </form>
+</section>
+<section class="panel wide">
+  <h2>Admin accounts</h2>
+  <div class="table-scroll">
+    <table class="data">
+      <thead><tr><th>Username</th></tr></thead>
+      <tbody>{{accountRows}}</tbody>
+    </table>
+  </div>
+  <p class="admin-note">Passwords must be at least 8 characters. "Update" sets a new password for that username.</p>
+  <form method="post" action="/admin" autocomplete="off">
+    <input type="hidden" name="entity" value="account">
+    <div class="grid">
+      <label class="field">Username <input type="text" name="username"></label>
+      <label class="field">Password <input type="password" name="password" autocomplete="new-password"></label>
+    </div>
+    <div class="admin-actions">
+      <button type="submit" name="action" value="add">Add admin</button>
+      <button type="submit" name="action" value="update">Change password</button>
+      <button type="submit" name="action" value="delete">Delete admin</button>
+    </div>
+  </form>
+</section>
+</main>
+</body>
+</html>
